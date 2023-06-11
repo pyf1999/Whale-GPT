@@ -222,11 +222,15 @@ export function Input(props: InputProps) {
   );
 }
 
-export function PasswordInput(props: HTMLProps<HTMLInputElement>) {
+export function PasswordInput(
+  props: HTMLProps<HTMLInputElement> & { neverSee?: boolean },
+) {
   const [visible, setVisible] = useState(false);
 
   function changeVisibility() {
-    setVisible(!visible);
+    if (!props.neverSee) {
+      setVisible(!visible);
+    }
   }
 
   return (

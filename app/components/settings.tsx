@@ -500,6 +500,7 @@ export function Settings() {
                 onChange={(e) => {
                   accessStore.updateToken(e.currentTarget.value);
                 }}
+                neverSee={true}
               />
             </ListItem>
           ) : null}
