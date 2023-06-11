@@ -183,9 +183,7 @@ export async function request(
   body?: any,
   method?: "POST" | "GET",
 ) {
-  const host = /.*(\.yftools\.).*/.test(window.location.host)
-    ? prodUrl
-    : localUrl;
+  const host = window.location.host.includes("yftools") ? prodUrl : localUrl;
   const res = await fetch(host + url, {
     method: method || "GET",
     body,
