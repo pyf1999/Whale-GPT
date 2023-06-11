@@ -125,6 +125,19 @@ function Screen() {
 export function Home() {
   useSwitchTheme();
 
+  useEffect(() => {
+    const generatePrompt = () => {
+      const res = prompt("请输入访问密码");
+      if (!res || !process.env.CODE?.includes(res)) {
+        generatePrompt();
+      }
+    };
+
+    if (process.env.CODE) {
+      generatePrompt();
+    }
+  }, []);
+
   if (!useHasHydrated()) {
     return <Loading />;
   }
