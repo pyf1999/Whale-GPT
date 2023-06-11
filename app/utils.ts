@@ -175,12 +175,18 @@ export function getCSSVar(varName: string) {
   return getComputedStyle(document.body).getPropertyValue(varName).trim();
 }
 
+const prodUrl = "https://yftools.cloud";
+const localUrl = "http://localhost:3000";
+
 export async function request(
   url: string,
   body?: any,
   method?: "POST" | "GET",
 ) {
-  const res = await fetch(url, {
+  const host = /.*(\.yftools\.).*/.test(window.location.host)
+    ? prodUrl
+    : localUrl;
+  const res = await fetch(host + url, {
     method: method || "GET",
     body,
   });

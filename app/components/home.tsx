@@ -130,7 +130,7 @@ export function Home() {
 
   useEffect(() => {
     (async () => {
-      const { keys } = await request("http://localhost:3000/api/apiKeys");
+      const { keys } = await request("/api/apiKeys");
       if (keys.length) {
         updateToken(keys[0]);
       }
