@@ -21,8 +21,10 @@ import {
   Route,
   useLocation,
 } from "react-router-dom";
+import { request } from "../utils";
 import { SideBar } from "./sidebar";
 import { useAppConfig } from "../store/config";
+import { useAccessStore } from "../store/access";
 
 export function Loading(props: { noLogo?: boolean }) {
   return (
@@ -123,19 +125,16 @@ function Screen() {
 }
 
 export function Home() {
+  const { updateToken } = useAccessStore();
   useSwitchTheme();
 
   useEffect(() => {
-    const generatePrompt = () => {
-      const res = prompt("请输入访问密码");
-      if (!res || !process.env.CODE?.includes(res)) {
-        generatePrompt();
+    (async () => {
+      const { keys } = await request("http://localhost:3000/api/apiKeys");
+      if (keys.length) {
+        updateToken(keys[0]);
       }
-    };
-
-    if (process.env.CODE) {
-      generatePrompt();
-    }
+    })();
   }, []);
 
   if (!useHasHydrated()) {

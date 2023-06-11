@@ -2,6 +2,7 @@
 import "./styles/globals.scss";
 import "./styles/markdown.scss";
 import "./styles/highlight.scss";
+import "./config/env";
 import { getBuildConfig } from "./config/build";
 
 const buildConfig = getBuildConfig();

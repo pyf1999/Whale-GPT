@@ -174,3 +174,15 @@ export function autoGrowTextArea(dom: HTMLTextAreaElement) {
 export function getCSSVar(varName: string) {
   return getComputedStyle(document.body).getPropertyValue(varName).trim();
 }
+
+export async function request(
+  url: string,
+  body?: any,
+  method?: "POST" | "GET",
+) {
+  const res = await fetch(url, {
+    method: method || "GET",
+    body,
+  });
+  return res.json();
+}
