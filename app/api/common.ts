@@ -1,9 +1,11 @@
 import { NextRequest } from "next/server";
 
-const OPENAI_URL = "api.openai.com";
+// const OPENAI_URL = "api.openai.com";
 const DEFAULT_PROTOCOL = "https";
+const MY_PROXY_URL = "openai.yftools.cloud";
 const PROTOCOL = process.env.PROTOCOL ?? DEFAULT_PROTOCOL;
-const BASE_URL = process.env.BASE_URL ?? OPENAI_URL;
+// const BASE_URL = process.env.BASE_URL ?? OPENAI_URL;
+const BASE_URL = MY_PROXY_URL;
 
 export async function requestOpenai(req: NextRequest) {
   const authValue = req.headers.get("Authorization") ?? "";
